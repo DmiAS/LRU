@@ -1,6 +1,8 @@
 package cache
 
 import (
+	"sync"
+
 	"github.com/DmiAS/LRU/internal/hash_table"
 	"github.com/DmiAS/LRU/internal/pkg/linked_list"
 )
@@ -21,12 +23,16 @@ type Cache struct {
 	cap  uint16
 	hash IHash
 	list IList
+	ttl  int
+	mu   *sync.Mutex
 }
 
-func NewCache(cap uint16) *Cache {
+func NewCache(cap uint16, ttl int) *Cache {
 	return &Cache{
 		cap:  cap,
 		hash: hash_table.NewHash(),
 		list: linked_list.NewLinkedList(),
+		ttl:  ttl,
+		mu:   &sync.Mutex{},
 	}
 }
