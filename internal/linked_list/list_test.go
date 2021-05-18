@@ -61,7 +61,7 @@ func TestLinkedList_PushNodeFront_One(t *testing.T) {
 	l := NewLinkedList()
 	var key uint32 = 10
 	val := "msg"
-	node := newNode(key, val)
+	node := NewNode(key, val)
 	l.PushNodeFront(node)
 
 	assert.NotNil(t, l.head)
@@ -76,8 +76,8 @@ func TestLinkedList_PushNodeFront_Two(t *testing.T) {
 	l := NewLinkedList()
 	var key1, key2 uint32 = 10, 20
 	val1, val2 := "msg1", "msg2"
-	node1 := newNode(key1, val1)
-	node2 := newNode(key2, val2)
+	node1 := NewNode(key1, val1)
+	node2 := NewNode(key2, val2)
 
 	l.PushNodeFront(node1)
 	l.PushNodeFront(node2)
@@ -110,7 +110,7 @@ func TestLinkedList_Pop_Zero(t *testing.T) {
 
 func TestLinkedList_Pop_One(t *testing.T) {
 	l := NewLinkedList()
-	node := newNode(1, "msg")
+	node := NewNode(1, "msg")
 	l.PushNodeFront(node)
 	listNode := l.Pop()
 
@@ -123,8 +123,8 @@ func TestLinkedList_Pop_One(t *testing.T) {
 
 func TestLinkedList_Pop_Two(t *testing.T) {
 	l := NewLinkedList()
-	node1 := newNode(1, "msg1")
-	node2 := newNode(2, "msg2")
+	node1 := NewNode(1, "msg1")
+	node2 := NewNode(2, "msg2")
 	l.PushNodeFront(node1)
 	l.PushNodeFront(node2)
 	listNode1 := l.Pop()
@@ -155,7 +155,7 @@ func TestLinkedList_Unlink_Nil(t *testing.T) {
 
 func TestLinkedList_Unlink_One(t *testing.T) {
 	l := NewLinkedList()
-	node := newNode(1, "1")
+	node := NewNode(1, "1")
 	l.PushNodeFront(node)
 
 	l.Unlink(node)
@@ -169,8 +169,8 @@ func TestLinkedList_Unlink_One(t *testing.T) {
 
 func TestLinkedList_Unlink_Right(t *testing.T) {
 	l := NewLinkedList()
-	node1 := newNode(1, "1")
-	node2 := newNode(2, "2")
+	node1 := NewNode(1, "1")
+	node2 := NewNode(2, "2")
 	l.PushNodeFront(node1)
 	l.PushNodeFront(node2)
 
@@ -191,8 +191,8 @@ func TestLinkedList_Unlink_Right(t *testing.T) {
 
 func TestLinkedList_Unlink_Left(t *testing.T) {
 	l := NewLinkedList()
-	node1 := newNode(1, "1")
-	node2 := newNode(2, "2")
+	node1 := NewNode(1, "1")
+	node2 := NewNode(2, "2")
 	l.PushNodeFront(node1)
 	l.PushNodeFront(node2)
 
@@ -213,9 +213,9 @@ func TestLinkedList_Unlink_Left(t *testing.T) {
 
 func TestLinkedList_Unlink_Middle(t *testing.T) {
 	l := NewLinkedList()
-	node1 := newNode(1, "1")
-	node2 := newNode(2, "2")
-	node3 := newNode(3, "3")
+	node1 := NewNode(1, "1")
+	node2 := NewNode(2, "2")
+	node3 := NewNode(3, "3")
 	l.PushNodeFront(node1)
 	l.PushNodeFront(node2)
 	l.PushNodeFront(node3)

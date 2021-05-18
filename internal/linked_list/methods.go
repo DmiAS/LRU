@@ -1,16 +1,16 @@
 package linked_list
 
 func (l *LinkedList) PushFront(key uint32, val string) *Node {
-	newNode := newNode(key, val)
+	NewNode := NewNode(key, val)
 	if l.head == nil {
-		l.head = newNode
-		l.tail = newNode
+		l.head = NewNode
+		l.tail = NewNode
 	} else {
-		l.head.prev = newNode
-		newNode.next = l.head
-		l.head = newNode
+		l.head.prev = NewNode
+		NewNode.next = l.head
+		l.head = NewNode
 	}
-	return newNode
+	return NewNode
 }
 
 func (l *LinkedList) PushNodeFront(node *Node) {

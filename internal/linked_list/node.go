@@ -2,7 +2,7 @@ package linked_list
 
 import "time"
 
-func newNode(key uint32, val string) *Node {
+func NewNode(key uint32, val string) *Node {
 	return &Node{
 		value:   val,
 		key:     key,
