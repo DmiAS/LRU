@@ -1,7 +1,5 @@
 package linked_list
 
-import "fmt"
-
 func (l *LinkedList) PushFront(key uint32, val string) *Node {
 	newNode := newNode(key, val)
 	if l.head == nil {
@@ -16,44 +14,47 @@ func (l *LinkedList) PushFront(key uint32, val string) *Node {
 }
 
 func (l *LinkedList) PushNodeFront(node *Node) {
+	if node == nil {
+		return
+	}
 	node.prev = nil
-	if l.head != nil && l.head != node {
-		node.next = l.head
+	node.next = l.head
+	if l.head != nil {
 		l.head.prev = node
 	} else {
-		node.next = nil
+		l.tail = node
 	}
 	l.head = node
 }
 
 func (l *LinkedList) Pop() *Node {
 	node := l.tail
-	if l.tail != nil && l.tail.prev != nil {
-		l.tail.prev.next = nil
-		l.tail = l.tail.prev
-	} else {
-		l.head, l.tail = nil, nil
+	if node != nil {
+		l.tail = node.prev
 	}
-
+	if l.tail == nil {
+		l.head = nil
+	} else {
+		l.tail.next = nil
+	}
 	return node
 }
 
-func (l LinkedList) PrintList() {
-	for curr := l.head; curr != nil; curr = curr.next {
-		fmt.Println("val = ", curr.Get())
-	}
-}
-
 func (l *LinkedList) Unlink(node *Node) {
+	if node == nil {
+		return
+	}
+	if node.prev != nil {
+		node.prev.next = node.next
+	}
+	if node.next != nil {
+		node.next.prev = node.prev
+	}
+	if l.tail == node {
+		l.tail = node.prev
+	}
 	if l.head == node {
-		l.head, l.head = nil, nil
-	} else {
-		if l.tail == node {
-			l.tail = node.prev
-		}
-		if node.prev != nil {
-			node.prev.next = node.next
-		}
+		l.head = node.next
 	}
 	node.prev, node.next = nil, nil
 }
