@@ -1,12 +1,11 @@
 package cache
 
 func (c *Cache) Get(key uint32) string {
-	var val string
-	node, val := c.getNodeInfo(key)
-
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
+	var val string
+	node, val := c.getNodeInfo(key)
 	if node != nil {
 		c.makeLeastUsed(node)
 	}
@@ -15,9 +14,10 @@ func (c *Cache) Get(key uint32) string {
 }
 
 func (c *Cache) Put(key uint32, val string) {
-	node, _ := c.getNodeInfo(key)
 	c.mu.Lock()
 	defer c.mu.Unlock()
+
+	node, _ := c.getNodeInfo(key)
 	if node != nil {
 		c.updateValue(node, val)
 	} else {

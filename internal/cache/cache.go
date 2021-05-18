@@ -24,7 +24,7 @@ type Cache struct {
 	hash IHash
 	list IList
 	ttl  float64
-	mu   *sync.RWMutex
+	mu   *sync.Mutex
 }
 
 func NewCache(cap uint16, ttl float64) *Cache {
@@ -33,6 +33,6 @@ func NewCache(cap uint16, ttl float64) *Cache {
 		hash: hash_table.NewHash(),
 		list: linked_list.NewLinkedList(),
 		ttl:  ttl,
-		mu:   &sync.RWMutex{},
+		mu:   &sync.Mutex{},
 	}
 }
