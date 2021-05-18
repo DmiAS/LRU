@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	"github.com/DmiAS/LRU/internal/hash_table"
-	"github.com/DmiAS/LRU/internal/pkg/linked_list"
+	"github.com/DmiAS/LRU/internal/linked_list"
 )
 
 type IHash interface {

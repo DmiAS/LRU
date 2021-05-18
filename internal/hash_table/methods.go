@@ -1,6 +1,6 @@
 package hash_table
 
-import "github.com/DmiAS/LRU/internal/pkg/linked_list"
+import "github.com/DmiAS/LRU/internal/linked_list"
 
 func (h *Hash) Get(key uint32) *linked_list.Node {
 	if node, ok := h.m[key]; !ok {

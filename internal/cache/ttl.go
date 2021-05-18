@@ -1,6 +1,6 @@
 package cache
 
-import "github.com/DmiAS/LRU/internal/pkg/linked_list"
+import "github.com/DmiAS/LRU/internal/linked_list"
 
 func (c *Cache) Delete(node *linked_list.Node) {
 	if node == nil {
