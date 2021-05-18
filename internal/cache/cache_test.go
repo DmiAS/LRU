@@ -19,6 +19,9 @@ func TestCache_Put_One(t *testing.T) {
 	time.Sleep(time.Second * 1)
 	cacheValue = c.Get(key)
 	assert.Equal(t, notFound, cacheValue)
+
+	node := c.hash.Get(key)
+	assert.Nil(t, node)
 }
 
 func TestCache_Put_Two(t *testing.T) {
@@ -86,11 +89,11 @@ func TestCache_Delete_Nil(t *testing.T) {
 	c := NewCache(1, 20)
 
 	assert.NotPanics(t, func() {
-		c.Delete(nil)
+		c.delete(nil)
 	})
 }
 
-func TestCache_Delete(t *testing.T) {
+func TestCache_delete(t *testing.T) {
 	c := NewCache(1, 20)
 	var key uint32 = 1
 	str := "msg1"
@@ -101,7 +104,7 @@ func TestCache_Delete(t *testing.T) {
 	assert.NotNil(t, node)
 	assert.Equal(t, str, val)
 
-	c.Delete(node)
+	c.delete(node)
 
 	val = c.Get(key)
 

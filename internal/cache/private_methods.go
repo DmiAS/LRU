@@ -28,6 +28,7 @@ func (c *Cache) getNodeInfo(key uint32) (*linked_list.Node, string) {
 	node := c.hash.Get(key)
 	if node != nil {
 		if c.isExpired(node) {
+			c.delete(node)
 			return nil, notFound
 		}
 		return node, node.Get()
