@@ -1,27 +1,26 @@
 package cache
 
-import "time"
-
 func (c *Cache) Get(key uint32) string {
+	var val string
+	node, val := c.getNodeInfo(key)
+
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	node := c.hash.Get(key)
-	if node == nil {
-		return ""
+
+	if node != nil {
+		c.makeLeastUsed(node)
 	}
-	c.makeLeastUsed(node)
-	return node.Get()
+
+	return val
 }
 
 func (c *Cache) Put(key uint32, val string) {
+	node, _ := c.getNodeInfo(key)
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	if node := c.hash.Get(key); node != nil {
-		node.Set(val)
-		c.makeLeastUsed(node)
+	if node != nil {
+		c.updateValue(node, val)
 	} else {
 		c.push(key, val)
 	}
-
-	time.AfterFunc(time.Duration(c.ttl)*time.Second, c.Delete(key))
 }

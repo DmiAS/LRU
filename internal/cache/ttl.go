@@ -1,14 +1,14 @@
 package cache
 
-func (c *Cache) Delete(key uint32) func() {
-	return func() {
-		c.mu.Lock()
-		defer c.mu.Unlock()
-		node := c.hash.Get(key)
-		if node == nil {
-			return
-		}
-		c.list.Unlink(node)
-		c.hash.Delete(key)
+import "github.com/DmiAS/LRU/internal/pkg/linked_list"
+
+func (c *Cache) Delete(node *linked_list.Node) {
+	if node == nil {
+		return
 	}
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	key := node.Key()
+	c.list.Unlink(node)
+	c.hash.Delete(key)
 }

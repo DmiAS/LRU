@@ -23,16 +23,16 @@ type Cache struct {
 	cap  uint16
 	hash IHash
 	list IList
-	ttl  int
-	mu   *sync.Mutex
+	ttl  float64
+	mu   *sync.RWMutex
 }
 
-func NewCache(cap uint16, ttl int) *Cache {
+func NewCache(cap uint16, ttl float64) *Cache {
 	return &Cache{
 		cap:  cap,
 		hash: hash_table.NewHash(),
 		list: linked_list.NewLinkedList(),
 		ttl:  ttl,
-		mu:   &sync.Mutex{},
+		mu:   &sync.RWMutex{},
 	}
 }

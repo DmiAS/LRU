@@ -1,10 +1,13 @@
 package linked_list
 
+import "time"
+
 type Node struct {
-	prev  *Node
-	next  *Node
-	value string
-	key   uint32
+	prev    *Node
+	next    *Node
+	value   string
+	key     uint32
+	created time.Time
 }
 
 type LinkedList struct {

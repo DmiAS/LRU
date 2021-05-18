@@ -3,7 +3,7 @@ package linked_list
 import "fmt"
 
 func (l *LinkedList) PushFront(key uint32, val string) *Node {
-	newNode := &Node{value: val, key: key}
+	newNode := newNode(key, val)
 	if l.head == nil {
 		l.head = newNode
 		l.tail = newNode
@@ -51,7 +51,9 @@ func (l *LinkedList) Unlink(node *Node) {
 		if l.tail == node {
 			l.tail = node.prev
 		}
-		node.prev.next = node.next
+		if node.prev != nil {
+			node.prev.next = node.next
+		}
 	}
 	node.prev, node.next = nil, nil
 }
