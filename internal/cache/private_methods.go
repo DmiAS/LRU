@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	notFound = "notFound"
+	notFound = "not found"
 )
 
 func (c *Cache) makeLeastUsed(node *linked_list.Node) {
