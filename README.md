@@ -41,3 +41,5 @@ c := cache.NewCache(cacheCap, 1) // ttl = 1 секунде
 cacheCap := capacity.BytesCap(132) // размер строки 128 байт + размер ключа 4 байта - т.е. вместимость 1 элемент
 c := cache.NewCache(cacheCap, 1) // ttl = 1 секунде
 ```
+
+Для запуска: `make all` или `make`
