@@ -17,5 +17,7 @@ func (c *Cache) delete(node *linked_list.Node) {
 }
 
 func (c *Cache) isExpired(node *linked_list.Node) bool {
-	return node != nil && time.Now().Sub(node.Ttl()).Seconds() > c.ttl
+	// количество секунд, которое прошло с момента создания записи
+	liveSeconds := time.Now().Sub(node.Ttl()).Seconds()
+	return node != nil && liveSeconds > c.ttl
 }

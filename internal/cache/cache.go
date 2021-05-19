@@ -25,11 +25,11 @@ type ICap interface {
 }
 
 type Cache struct {
-	cap  uint16
-	hash IHash
-	list IList
-	ttl  float64
-	mu   *sync.Mutex
+	available uint16 // сколько сводных мест
+	hash      IHash
+	list      IList
+	ttl       float64
+	mu        *sync.Mutex
 }
 
 // т.к. размер может задаваться либо количеством элементов,
@@ -37,10 +37,10 @@ type Cache struct {
 // реализуют интерфейс с методом, возвращающим capacity = количеству возможных элементов в кэше
 func NewCache(cap ICap, ttl float64) *Cache {
 	return &Cache{
-		cap:  cap.GetSize(),
-		hash: hash_table.NewHash(),
-		list: linked_list.NewLinkedList(),
-		ttl:  ttl,
-		mu:   &sync.Mutex{},
+		available: cap.GetSize(),
+		hash:      hash_table.NewHash(),
+		list:      linked_list.NewLinkedList(),
+		ttl:       ttl,
+		mu:        &sync.Mutex{},
 	}
 }

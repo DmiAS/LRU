@@ -19,6 +19,7 @@ func (l *LinkedList) PushNodeFront(node *Node) {
 	if node == nil {
 		return
 	}
+
 	node.prev = nil
 	node.next = l.head
 	if l.head != nil {
@@ -50,6 +51,7 @@ func (l *LinkedList) Unlink(node *Node) {
 	if node == nil {
 		return
 	}
+
 	if node.prev != nil {
 		node.prev.next = node.next
 	}
