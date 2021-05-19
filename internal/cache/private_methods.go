@@ -16,6 +16,9 @@ func (c *Cache) makeLeastUsed(node *linked_list.Node) {
 func (c *Cache) push(key uint32, val string) {
 	if c.cap == 0 {
 		node := c.list.Pop()
+		if node == nil {
+			return
+		}
 		c.hash.Delete(node.Key())
 		c.cap++
 	}

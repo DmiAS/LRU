@@ -24,3 +24,7 @@ func (c *Cache) Put(key uint32, val string) {
 		c.push(key, val)
 	}
 }
+
+func (c *Cache) SetBytesCapacity(size uint64) {
+
+}

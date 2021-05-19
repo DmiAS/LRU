@@ -19,6 +19,11 @@ type IList interface {
 	PushFront(key uint32, val string) *linked_list.Node
 	Pop() *linked_list.Node
 }
+
+type ICap interface {
+	GetSize() uint16
+}
+
 type Cache struct {
 	cap  uint16
 	hash IHash
@@ -27,9 +32,9 @@ type Cache struct {
 	mu   *sync.Mutex
 }
 
-func NewCache(cap uint16, ttl float64) *Cache {
+func NewCache(cap ICap, ttl float64) *Cache {
 	return &Cache{
-		cap:  cap,
+		cap:  cap.GetSize(),
 		hash: hash_table.NewHash(),
 		list: linked_list.NewLinkedList(),
 		ttl:  ttl,
