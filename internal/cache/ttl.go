@@ -6,6 +6,7 @@ import (
 	"github.com/DmiAS/LRU/internal/linked_list"
 )
 
+// удаление конкретной ноды из кэша
 func (c *Cache) delete(node *linked_list.Node) {
 	if node == nil {
 		return

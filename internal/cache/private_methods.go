@@ -9,11 +9,15 @@ const (
 )
 
 func (c *Cache) makeLeastUsed(node *linked_list.Node) {
+	// вытаскиваем из списка
 	c.list.Unlink(node)
+	// вставляем в голову списка
 	c.list.PushNodeFront(node)
 }
 
 func (c *Cache) push(key uint32, val string) {
+	// если кэш полон, то удаляю элемент с хвоста списка(наименее используемый элемент в кэше) и
+	// из мапы удаляю элемент, лежащий по текущему ключу
 	if c.cap == 0 {
 		node := c.list.Pop()
 		if node == nil {
@@ -30,6 +34,7 @@ func (c *Cache) push(key uint32, val string) {
 func (c *Cache) getNodeInfo(key uint32) (*linked_list.Node, string) {
 	node := c.hash.Get(key)
 	if node != nil {
+		// проверяю испарился ли ttl, если да, то нужно удалить элемент из кэша
 		if c.isExpired(node) {
 			c.delete(node)
 			return nil, notFound

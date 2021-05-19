@@ -6,9 +6,10 @@ func NewNode(key uint32, val string) *Node {
 	return &Node{
 		value:   val,
 		key:     key,
-		created: time.Now(),
+		created: time.Now(), // используется при вычислении испарения
 	}
 }
+
 func (n *Node) Get() string {
 	return n.value
 }

@@ -1,5 +1,6 @@
 package linked_list
 
+// создание нового элемента списка и добавление его в голову списка
 func (l *LinkedList) PushFront(key uint32, val string) *Node {
 	NewNode := NewNode(key, val)
 	if l.head == nil {
@@ -13,6 +14,7 @@ func (l *LinkedList) PushFront(key uint32, val string) *Node {
 	return NewNode
 }
 
+// добавление имеющейся ноды в голову списка
 func (l *LinkedList) PushNodeFront(node *Node) {
 	if node == nil {
 		return
@@ -27,11 +29,14 @@ func (l *LinkedList) PushNodeFront(node *Node) {
 	l.head = node
 }
 
+// удаление элемента с хвоста
 func (l *LinkedList) Pop() *Node {
-	node := l.tail
-	if node != nil {
-		l.tail = node.prev
+	if l.tail == nil {
+		return nil
 	}
+
+	node := l.tail
+	l.tail = node.prev
 	if l.tail == nil {
 		l.head = nil
 	} else {
@@ -40,6 +45,7 @@ func (l *LinkedList) Pop() *Node {
 	return node
 }
 
+// удаление элемента из произвольного места в списке
 func (l *LinkedList) Unlink(node *Node) {
 	if node == nil {
 		return

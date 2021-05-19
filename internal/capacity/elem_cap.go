@@ -1,5 +1,6 @@
 package capacity
 
+// тип для задания размера в количестве элементов
 type ElemCap uint16
 
 func NewElemCap(size uint16) ElemCap {

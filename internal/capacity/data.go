@@ -1,7 +1,7 @@
 package capacity
 
 const (
-	keySize      = 4
-	valSize      = 128
-	maxCacheSize = 30000
+	keySize      = 4     // размер ключа
+	valSize      = 128   // размер строки
+	maxCacheSize = 30000 // размер кэша
 )
